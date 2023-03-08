@@ -124,13 +124,13 @@ esac
 # Prepare environment
 export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH
 
-#if [ -n "$MKLROOT" ] && [ -d "$MKLROOT" ]; then
-#	echo "mkl_dir directory exists!"
-#	echo "Great... continue set-up"
-#	source "$MKLROOT"/bin/mklvars.sh intel64
-#else
-#	echo "MKL not found, trying to compile and use OpenBLAS"
-#fi
+if [ -n "$MKLROOT" ] && [ -d "$MKLROOT" ]; then
+	echo "mkl_dir directory exists!"
+	echo "Great... continue set-up"
+	source "$MKLROOT"/env/vars.sh
+else
+	echo "MKL not found, trying to compile and use OpenBLAS"
+fi
 
 cd "$BASEDIR" || exit
 rm -rf CMake*
